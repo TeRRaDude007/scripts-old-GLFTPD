@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 ############## ############## ############## ############## ############## ######## #### ## #
 # total-rescan (c) daxxar ^ team pzs-ng <daxxar@daxxar.com> 
-#  - Bumped to version 1.5rc3 by TeRRaDude (added flac to the rescan/adudiosort)
+#  - Bumped to version 1.5rc3 by TeRRaDude (added flac to the rescan/audiosort)
 #
 
 #.########################################################################,
