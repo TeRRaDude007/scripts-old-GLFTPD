@@ -1,13 +1,13 @@
 #!/usr/bin/perl -w
 ############## ############## ############## ############## ############## ######## #### ## #
 # total-rescan (c) daxxar ^ team pzs-ng <daxxar@daxxar.com> 
-#  - version 1.5rc2
+#  - Bumped to version 1.5rc3 by TeRRaDude (added flac to the rescan/adudiosort)
 #
 
 #.########################################################################,
  # THIS SCRIPT *MUST* RUN AS ROOT, DUE TO chroot! IT CANNOT RUN WITHOUT!  #
  # (will give an error like "- Chroot failed! (Operation not permitted)") #
-#`#######################################################################´
+#`#######################################################################Â´
 
 #
 # info:
@@ -114,7 +114,7 @@ my $zipscan = 1;                    # Set to 0 if you do not want to rescan dirs
 
 my $preservestamp = 1;              # Set to 0 if you do not want to preserve timestamps on dirs.
 
-my $stampfromfile = 0;              # Set to 1 if you want to fetch the timestamp from the first zip/sfv-file in thedir.
+my $stampfromfile = 1;              # Set to 1 if you want to fetch the timestamp from the first zip/sfv-file in thedir.
                                     # Useful for people who've run the original script (1.4rc1 or before), and want to regen.
 
 my $printeach = 1;                  # Set to 0 if you do not want it to output "PASSED:" and "FAILED:" for each rescan. 
@@ -138,7 +138,7 @@ my $skipmatch = '^(?:NUKED|\(NUKED\))-';    # Regular expression that directorie
 ## please contact the author, daxxar. He's reachable per IRC 
 # (nick daxxar) or mail (daxxar@daxxar.com). Thanks.
 
-my $version = '.5rc2';
+my $version = '.5rc3';
 print "+ Starting total rescan v1$version by daxxar ^ team pzs-ng.\n";
 
 my $path = shift;
@@ -177,10 +177,14 @@ sub isscandir {
         if ($onlysort && /\.mp3$/i) {
             closedir(TARGETDIR);
             return 1;
+        }        
+        if ($onlysort && /\.flac$/i) {
+            closedir(TARGETDIR);
+            return 1;
         }
     }
 
-    # In case the dir is without .sfv/.zip/.mp3. :)
+    # In case the dir is without .sfv/.zip/.mp3/.flac. :)
     closedir(TARGETDIR);
     return 0;
 }
